@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>تقرير الزيارات اليومية - الوطن�� المهيّدب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+        --primary: #0077C8;
+        --primary-dark: #005999;
+        --primary-light: #E6F4FF;
+        --secondary: #00A6A6;
+        --success: #10B981;
+        --danger: #EF4444;
+        --warning: #F59E0B;
+        --bg: #F5F9FC;
+        --surface: #FFFFFF;
+        --text: #1E293B;
+        --text-light: #64748B;
+        --border: #E2E8F0;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        --radius: 16px;
+        --radius-sm: 12px;
+        --transition: all 0.2s ease;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Tajawal', sans-serif;
+        line-height: 1.5;
+        min-height: 100vh;
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+
+    .header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 20px 18px;
+        border-radius: var(--radius);
+        margin-bottom: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header::before {
+        content: '';
+        position: absolute;
+        top: -30%;
+        right: -20%;
+        width: 150px;
+        height: 150px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .logo-placeholder {
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 800;
+        backdrop-filter: blur(8px);
+        flex-shrink: 0;
+    }
+
+    .header h1 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin-bottom: 2px;
+    }
+
+    .header p {
+        font-size: 0.75rem;
+        opacity: 0.85;
+    }
+
+
+    .card {
+        background: var(--surface);
+        border-radius: var(--radius);
+        padding: 18px;
+        margin-bottom: 16px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+    }
+
+    .card:active {
+        transform: scale(0.99);
+    }
+
+    .card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .card-title::before {
+        content: '';
+        width: 4px;
+        height: 18px;
+        background: var(--primary);
+        border-radius: 2px;
+    }
+
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    @media (min-width: 600px) {
+        .form-row {
+            flex-direction: row;
+            gap: 16px;
+        }
+        .form-row > * {
+            flex: 1;
+        }
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text);
+        font-size: 0.85rem;
+    }
+
+    .required::after {
+        content: ' *';
+        color: var(--danger);
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 14px 14px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 0.95rem;
+        background: var(--surface);
+        color: var(--text);
+        transition: var(--transition);
+        font-family: 'Tajawal', sans-serif;
+    }
+
+
+    @media (max-width: 600px) {
+        input, select, textarea {
+            padding: 12px 12px;
+            font-size: 16px;
+        }
+    }
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .error-msg {
+        color: var(--danger);
+        font-size: 0.75rem;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .error-msg.show {
+        display: block;
+    }
+
+    .input-error {
+        border-color: var(--danger) !important;
+    }
+
+
+    .radio-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .radio-card {
+        flex: 1;
+        min-width: 110px;
+        position: relative;
+    }
+
+    .radio-card input {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .radio-card label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-weight: 500;
+        margin: 0;
+        background: var(--surface);
+        font-size: 0.85rem;
+        transition: var(--transition);
+    }
+
+    .radio-card input:checked + label {
+        border-color: var(--primary);
+        background: var(--primary-light);
+        color: var(--primary);
+        font-weight: 700;
+    }
+
+    /* Buttons - متجاوبة */
+    .btn {
+        padding: 14px 20px;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        font-family: 'Tajawal', sans-serif;
+    }
+
+    .btn:active {
+        transform: scale(0.97);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+        color: white;
+    }
+
+    .btn-danger {
+        background: var(--danger);
+        color: white;
+    }
+
+    .btn-edit {
+        background: var(--warning);
+        color: white;
+    }
+
+    .btn-secondary {
+        background: var(--text-light);
+        color: white;
+    }
+
+    .btn-small {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        width: auto;
+        flex: 1;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    /* قائمة الزيارات - متجاوبة (بطاقات للموبايل) */
+    .visits-container {
+        margin-top: 12px;
+    }
+
+    /* جدول للشاشات الكبيرة فقط */
+    .visits-table {
+        display: none;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    @media (min-width: 768px) {
+        .visits-table {
+            display: table;
+        }
+        .visit-cards {
+            display: none !important;
+        }
+    }
+
+    .visits-table th {
+        text-align: right;
+        padding: 10px 12px;
+        font-weight: 700;
+        color: var(--text-light);
+        font-size: 0.75rem;
+    }
+
+    .visits-table td {
+        background: var(--surface);
+        padding: 12px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        font-size: 0.85rem;
+    }
+
+    .visits-table tr td:first-child {
+        border-right: 1px solid var(--border);
+        border-radius: 0 10px 10px 0;
+    }
+
+    .visits-table tr td:last-child {
+        border-left: 1px solid var(--border);
+        border-radius: 10px 0 0 10px;
+    }
+
+    /* بطاقات للموبايل */
+    .visit-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .visit-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 14px;
+        animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .visit-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .visit-card-header h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+
+    .badge-new {
+        background: var(--primary-light);
+        color: var(--primary);
+    }
+
+    .badge-registered {
+        background: #D1FAE5;
+        color: #065F46;
+    }
+
+    .visit-card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.85rem;
+    }
+
+    .visit-card-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .visit-card-label {
+        color: var(--text-light);
+        font-weight: 600;
+        min-width: 75px;
+    }
+
+    .visit-card-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+    }
+
+    .counter-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 26px;
+        height: 26px;
+        padding: 0 6px;
+        background: var(--primary);
+        color: white;
+        border-radius: 13px;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text-light);
+    }
+
+    .empty-state svg {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 12px;
+        opacity: 0.4;
+    }
+
+    /* Modal - متجاوب */
+    .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .modal.show {
+        display: flex;
+    }
+
+    .modal-content {
+        background: var(--surface);
+        border-radius: var(--radius);
+        padding: 20px;
+        max-width: 320px;
+        width: 100%;
+        animation: scaleIn 0.2s ease;
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .modal-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        margin-bottom: 20px;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* Toast - متجاوب */
+    .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        background: var(--surface);
+        padding: 12px 16px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        z-index: 2000;
+        opacity: 0;
+        transform: translateY(100px);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    @media (min-width: 500px) {
+        .toast {
+            left: auto;
+            right: auto;
+            min-width: 280px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+
+    .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .toast.success {
+        border-right: 3px solid var(--success);
+    }
+
+    .toast.error {
+        border-right: 3px solid var(--danger);
+    }
+
+    /* تحسينات إضافية للموبايل */
+    @media (max-width: 480px) {
+        body {
+            padding: 8px;
+        }
+        
+        .card {
+            padding: 14px;
+        }
+        
+        .btn {
+            padding: 12px 16px;
+        }
+        
+        .radio-card label {
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+    }
+
+    /* إزالة السهم الزائد من الأرقام في input time */
+    input[type="time"] {
+        direction: ltr;
+        text-align: right;
+    }
+
+    /* Multi Select */
+    .multi-select {
+        position: relative;
+    }
+
+    .multi-select-field {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        min-height: 48px;
+        padding: 8px 36px 8px 12px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .multi-select-field:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .multi-select.input-error .multi-select-field {
+        border-color: var(--danger) !important;
+    }
+
+    .multi-select-placeholder {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        pointer-events: none;
+    }
+
+    .multi-select.has-value .multi-select-placeholder {
+        display: none;
+    }
+
+    .multi-select-arrow {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-light);
+        font-size: 0.65rem;
+        pointer-events: none;
+        transition: transform 0.2s ease;
+    }
+
+    .multi-select.open .multi-select-arrow {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .multi-select-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        flex: 1;
+    }
+
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .tag-visit {
+        background: var(--primary-light);
+        color: var(--primary);
+    }
+
+    .tag-product {
+        background: #E0F2F1;
+        color: #00695C;
+    }
+
+    .tag-remove {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        font-size: 0.85rem;
+        line-height: 1;
+        color: inherit;
+        opacity: 0.7;
+        display: flex;
+        align-items: center;
+    }
+
+    .tag-remove:hover {
+        opacity: 1;
+    }
+
+    .multi-select-dropdown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 0;
+        left: 0;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-lg);
+        z-index: 100;
+        max-height: 220px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .multi-select.open .multi-select-dropdown {
+        display: block;
+    }
+
+    .multi-select-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .multi-select-option:last-child {
+        border-bottom: none;
+    }
+
+    .multi-select-option:hover,
+    .multi-select-option:active {
+        background: var(--primary-light);
+    }
+
+    .multi-select-option input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .multi-select-option.selected {
+        background: var(--primary-light);
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .tags-cell {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        max-width: 180px;
+    }
+
+    .tags-cell .tag {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .text-muted {
+        color: var(--text-light);
+        font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+        .multi-select-field {
+            min-height: 44px;
+            padding: 8px 32px 8px 10px;
+        }
+
+        .multi-select-option {
+            padding: 14px;
+            font-size: 16px;
+        }
+    }
+
+    /* Login Screen */
+    body.login-active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+    }
+
+    .login-screen {
+        width: 100%;
+        max-width: 420px;
+        animation: fadeIn 0.35s ease;
+    }
+
+    .login-screen.hidden {
+        display: none;
+    }
+
+    .login-header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 28px 24px;
+        border-radius: var(--radius) var(--radius) 0 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .login-header::before {
+        content: '';
+        position: absolute;
+        top: -40%;
+        left: -20%;
+        width: 180px;
+        height: 180px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+    }
+
+    .login-logo {
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: 800;
+        margin: 0 auto 14px;
+        backdrop-filter: blur(8px);
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-header h1 {
+        font-size: 1.35rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-header p {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-card {
+        background: var(--surface);
+        border-radius: 0 0 var(--radius) var(--radius);
+        padding: 24px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border);
+        border-top: none;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper input {
+        padding-left: 44px;
+    }
+
+    .password-toggle {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        padding: 4px;
+        color: var(--text-light);
+        line-height: 1;
+    }
+
+    .remember-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .remember-row input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    .remember-row label {
+        margin: 0;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: var(--text-light);
+        cursor: pointer;
+    }
+
+    .login-footer {
+        text-align: center;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
+        font-size: 0.75rem;
+        color: var(--text-light);
+    }
+
+    #appScreen {
+        display: none;
+        width: 100%;
+    }
+
+    #appScreen.visible {
+        display: block;
+    }
+
+    .header-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .header-user {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .user-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+        max-width: 140px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .btn-logout {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Tajawal', sans-serif;
+        transition: var(--transition);
+        white-space: nowrap;
+    }
+
+    .btn-logout:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* بطاقة معلومات المندوب */
+    .user-info-card {
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--surface) 100%);
+        border: 1.5px solid var(--primary);
+        border-right-width: 4px;
+    }
+
+    .user-welcome {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 14px;
+    }
+
+    .user-welcome span {
+        color: var(--primary);
+    }
+
+    .user-info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+        .user-info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .user-info-item {
+        background: var(--surface);
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+    }
+
+    .user-info-item .info-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-light);
+        margin-bottom: 4px;
+    }
+
+    .user-info-item .info-value {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+</style>
+</head>
+<body class="login-active">
+<!-- Login Screen -->
+<div id="loginScreen" class="login-screen">
+    <div class="login-header">
+        <div class="login-logo">WM</div>
+        <h1>نظام تقارير الزيارات اليومية</h1>
+        <p>الوطني المهيّدب لحلول المياه</p>
+    </div>
+    <div class="login-card">
+        <p class="login-subtitle">تسجيل الدخول للمندوبين</p>
+        <form id="loginForm" autocomplete="on">
+            <div class="form-group">
+                <label for="loginUsername" class="required">اسم المستخدم</label>
+                <input type="text" id="loginUsername" placeholder="أدخل اسم المستخدم" autocomplete="username">
+                <div class="error-msg" id="loginUsernameError">⚠️ اسم المستخدم مطلوب</div>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword" class="required">كلمة المرور</label>
+                <div class="password-wrapper">
+                    <input type="password" id="loginPassword" placeholder="أدخل كلمة المرور" autocomplete="current-password">
+                    <button type="button" class="password-toggle" id="togglePassword" aria-label="إظهار كلمة المرور">👁</button>
+                </div>
+                <div class="error-msg" id="loginPasswordError">⚠️ كلمة المرور مطلوبة</div>
+            </div>
+            <div class="error-msg" id="loginGeneralError" style="margin-bottom: 12px;">اسم المستخدم أو كلمة المرور غير صحيحة</div>
+            <button type="submit" class="btn btn-primary" id="loginBtn">تسجيل الدخول</button>
+        </form>
+        <div class="login-footer">
+            نظام داخلي لمناديب المبيعات — الوطني المهيّدب
+        </div>
+    </div>
+</div>
+
+<div id="appScreen" class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="header-content">
+                <div class="logo-placeholder">WM</div>
+                <div>
+                    <h1>تقرير الزيارات اليومية</h1>
+                    <p>الوطني المهيّدب لحلول المياه</p>
+                </div>
+            </div>
+            <div class="header-user">
+                <span class="user-badge" id="headerUserName">👤 المندوب</span>
+                <button type="button" class="btn-logout" id="logoutBtn">تسجيل خروج</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- بطاقة معلومات المندوب -->
+    <div class="card user-info-card">
+        <div class="user-welcome">مرحباً، <span id="displayRepName">—</span></div>
+        <div class="user-info-grid">
+            <div class="user-info-item">
+                <span class="info-label">المنطقة</span>
+                <span class="info-value" id="displayRegion">—</span>
+            </div>
+            <div class="user-info-item">
+                <span class="info-label">السايت</span>
+                <span class="info-value" id="displaySite">—</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- حقول مخفية لحفظ البيانات وإرسال التقرير -->
+    <input type="hidden" id="region">
+    <input type="hidden" id="site">
+    <input type="hidden" id="repName">
+
+    <!-- Basic Info Card -->
+    <div class="card">
+        <h2 class="card-title">المعلومات الأساسية</h2>
+        <div class="form-group">
+            <label for="visitDate" class="required">التاريخ</label>
+            <input type="date" id="visitDate">
+            <div class="error-msg" id="visitDateError">⚠️ التاريخ مطلوب</div>
+        </div>
+        <div class="error-msg" id="regionError">⚠️ المنطقة مطلوبة</div>
+        <div class="error-msg" id="siteError">⚠️ الموقع مطلوب</div>
+        <div class="error-msg" id="repNameError">⚠️ اسم المندوب مطلوب</div>
+    </div>
+
+    <!-- Add Visit Card -->
+    <div class="card">
+        <h2 class="card-title">➕ إضافة زيارة جديدة</h2>
+        <form id="visitForm">
+            <div class="form-group">
+                <label class="required">حالة العميل</label>
+                <div class="radio-group">
+                    <div class="radio-card">
+                        <input type="radio" id="customerNew" name="customerStatus" value="عميل جديد">
+                        <label for="customerNew">عميل جديد</label>
+                    </div>
+                    <div class="radio-card">
+                        <input type="radio" id="customerRegistered" name="customerStatus" value="عميل مسجل">
+                        <label for="customerRegistered">عميل مسجل</label>
+                    </div>
+                </div>
+                <div class="error-msg" id="customerStatusError">⚠️ حالة العميل مطلوبة</div>
+            </div>
+
+            <div class="form-group">
+                <label for="entityName" class="required">اسم الجهة</label>
+                <input type="text" id="entityName" placeholder="أدخل اسم الجهة أو العميل">
+                <div class="error-msg" id="entityNameError">⚠️ اسم الجهة مطلوب</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="startTime" class="required">وقت البدء</label>
+                    <input type="time" id="startTime">
+                    <div class="error-msg" id="startTimeError">⚠️ وقت البدء مطلوب</div>
+                </div>
+                <div class="form-group">
+                    <label for="endTime" class="required">وقت الانتهاء</label>
+                    <input type="time" id="endTime">
+                    <div class="error-msg" id="endTimeError">⚠️ وقت الانتهاء مطلوب</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="visitTypeMulti" class="required">نوع الزيارة</label>
+                <div id="visitTypeMulti" class="multi-select"></div>
+                <div class="error-msg" id="visitTypeError">⚠️ نوع الزيارة مطلوب (اختر نوعاً واحداً على الأقل)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="productsMulti">المنتجات محل الاهتمام</label>
+                <div id="productsMulti" class="multi-select"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">ملاحظات</label>
+                <textarea id="notes" placeholder="أضف أي ملاحظات حول الزيارة..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="addVisitBtn">+ إضافة الزيارة</button>
+        </form>
+    </div>
+
+    <!-- Visits List Card -->
+    <div class="card">
+        <h2 class="card-title">
+            📋 الزيارات المسجلة
+            <span class="counter-badge" id="visitsCount">0</span>
+        </h2>
+        <div class="visits-container">
+            <div id="emptyState" class="empty-state">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <p>لا توجد زيارات مسجلة بعد</p>
+                <p style="font-size: 0.75rem; margin-top: 6px;">قم بإضافة زيارة جديدة من النموذج أعلاه</p>
+            </div>
+
+            <table class="visits-table" id="visitsTable">
+                <thead>
+                    <tr>
+                        <th>العميل</th>
+                        <th>نوع الزيارة</th>
+                        <th>المنتجات</th>
+                        <th>البدء</th>
+                        <th>الانتهاء</th>
+                        <th>الملاحظات</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="visitsTableBody"></tbody>
+            </table>
+
+            <div class="visit-cards" id="visitCards"></div>
+        </div>
+    </div>
+
+    <button class="btn btn-success" id="submitReportBtn">📨 إرسال التقرير اليومي</button>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal" id="deleteModal">
+    <div class="modal-content">
+        <h3 class="modal-title">تأكيد الحذف</h3>
+        <p class="modal-body">هل أنت متأكد من حذف هذه الزيارة؟ لا يمكن التراجع عن هذا الإجراء.</p>
+        <div class="modal-actions">
+            <button class="btn btn-danger" id="confirmDeleteBtn">حذف</button>
+            <button class="btn btn-secondary" id="cancelDeleteBtn">إلغاء</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+    // ========== البيانات ==========
+    let visits = [];
+    let editingIndex = -1;
+    let deleteIndex = -1;
+    let currentUser = null;
+
+    const SESSION_KEY = 'wataniSession';
+
+    const AUTHORIZED_USERS = [
+        { username: 'ms01', password: '123456', name: 'أيمن لبيب',       site: 'MS01', region: 'جدة ومكة' },
+        { username: 'ms03', password: '123456', name: 'أيمن عبدالله',   site: 'MS03', region: 'جدة ومكة' },
+        { username: 'ms07', password: '123456', name: 'إبراهيم هاشم',   site: 'MS07', region: 'جدة ومكة' },
+        { username: 'ms08', password: '123456', name: 'محمد رواش',      site: 'MS08', region: 'جدة ومكة' },
+        { username: 'ms09', password: '123456', name: 'هاني الشحات',    site: 'MS09', region: 'جدة ومكة' },
+        { username: 'ms11', password: '123456', name: 'عبدالرازق بكر',  site: 'MS11', region: 'جدة ومكة' }
+    ];
+
+    const siteMapping = {
+        'جدة ومكة': ['MS01', 'MS02', 'MS03', 'MS04', 'MS05', 'MS06', 'MS07', 'MS08', 'MS09', 'MS10', 'MS11'],
+        'الرياض': ['موقع الرياض 1', 'موقع الرياض 2', 'موقع الرياض 3'],
+        'المدينة وتبوك': ['موقع المدينة 1', 'موقع تبوك 1'],
+        'الشرقية': ['موقع الدمام 1', 'موقع الخبر 1', 'موقع الأحساء 1'],
+        'الجنوبية': ['موقع أبها 1', 'موقع خميس مشيط 1'],
+        'القصيم': ['موقع بريدة 1', 'موقع عنيزة 1']
+    };
+
+    const visitTypeOptions = [
+        'أمر بيع', 'عرض سعر', 'عرض منتجات', 'تحصيل مالي',
+        'إعادة تنشيط عميل', 'متابعة دورية', 'تفاوض', 'أخرى'
+    ];
+
+    const productOptions = [
+        'خزانات بولي إيثلين', 'خزانات فايبر', 'مانهولات', 'مضخات',
+        'فلاتر', 'سايلانتا', 'سخانات', 'منتجات غاز', 'أخرى'
+    ];
+
+    const multiSelectInstances = {};
+
+    // ========== عناصر DOM ==========
+    const regionField = document.getElementById('region');
+    const siteField = document.getElementById('site');
+    const repNameField = document.getElementById('repName');
+    const visitForm = document.getElementById('visitForm');
+    const submitReportBtn = document.getElementById('submitReportBtn');
+    const deleteModal = document.getElementById('deleteModal');
+
+    // ========== تسجيل الدخول والجلسة ==========
+    function findUser(username) {
+        return AUTHORIZED_USERS.find(u => u.username === username);
+    }
+
+    function saveSession(user) {
+        const session = {
+            username: user.username,
+            name: user.name,
+            region: user.region,
+            site: user.site,
+            loginAt: new Date().toISOString()
+        };
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+        currentUser = session;
+    }
+
+    function loadSession() {
+        const saved = localStorage.getItem(SESSION_KEY);
+        if (!saved) return null;
+        try {
+            const session = JSON.parse(saved);
+            if (!findUser(session.username)) {
+                clearSession();
+                return null;
+            }
+            currentUser = session;
+            return session;
+        } catch {
+            clearSession();
+            return null;
+        }
+    }
+
+    function clearSession() {
+        localStorage.removeItem(SESSION_KEY);
+        currentUser = null;
+    }
+
+    function applyUserProfile(user) {
+        regionField.value = user.region;
+        siteField.value = user.site;
+        repNameField.value = user.name;
+        document.getElementById('displayRepName').textContent = user.name;
+        document.getElementById('displayRegion').textContent = user.region;
+        document.getElementById('displaySite').textContent = user.site;
+        document.getElementById('headerUserName').textContent = '👤 ' + user.name;
+        saveToLocalStorage();
+    }
+
+    function showLoginScreen() {
+        document.body.classList.add('login-active');
+        document.getElementById('loginScreen').classList.remove('hidden');
+        document.getElementById('appScreen').classList.remove('visible');
+        document.getElementById('loginGeneralError').classList.remove('show');
+    }
+
+    function showAppScreen() {
+        document.body.classList.remove('login-active');
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('appScreen').classList.add('visible');
+    }
+
+    function validateLoginField(fieldId, errorId) {
+        const field = document.getElementById(fieldId);
+        const error = document.getElementById(errorId);
+        if (!field.value.trim()) {
+            field.classList.add('input-error');
+            error.classList.add('show');
+            return false;
+        }
+        field.classList.remove('input-error');
+        error.classList.remove('show');
+        return true;
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+        document.getElementById('loginGeneralError').classList.remove('show');
+
+        const usernameValid = validateLoginField('loginUsername', 'loginUsernameError');
+        const passwordValid = validateLoginField('loginPassword', 'loginPasswordError');
+        if (!usernameValid || !passwordValid) return;
+
+        const username = document.getElementById('loginUsername').value.trim().toLowerCase();
+        const password = document.getElementById('loginPassword').value;
+        const user = AUTHORIZED_USERS.find(u =>
+            u.username === username && u.password === password
+        );
+
+        if (!user) {
+            document.getElementById('loginGeneralError').classList.add('show');
+            document.getElementById('loginPassword').classList.add('input-error');
+            return;
+        }
+
+        saveSession(user);
+        applyUserProfile(user);
+        loadFromLocalStorage();
+        updateVisitsDisplay();
+        document.getElementById('loginForm').reset();
+        showAppScreen();
+        showToast('تم تسجيل الدخول بنجاح', 'success');
+    }
+
+    function handleLogout() {
+        clearSession();
+        document.getElementById('loginForm').reset();
+        showLoginScreen();
+        showToast('تم تسجيل الخروج بنجاح', 'success');
+    }
+
+    function requireAuth() {
+        const session = loadSession();
+        if (!session) {
+            showLoginScreen();
+            return false;
+        }
+        const user = findUser(session.username);
+        if (!user) {
+            clearSession();
+            showLoginScreen();
+            return false;
+        }
+        applyUserProfile(user);
+        showAppScreen();
+        return true;
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+
+    document.getElementById('togglePassword').addEventListener('click', () => {
+        const input = document.getElementById('loginPassword');
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        document.getElementById('togglePassword').textContent = isPassword ? '🙈' : '👁';
+    });
+
+    ['loginUsername', 'loginPassword'].forEach(id => {
+        document.getElementById(id).addEventListener('input', function() {
+            this.classList.remove('input-error');
+            document.getElementById(id + 'Error').classList.remove('show');
+            document.getElementById('loginGeneralError').classList.remove('show');
+        });
+    });
+
+    // ========== دوال مساعدة ==========
+    function saveToLocalStorage() {
+        const data = {
+            date: document.getElementById('visitDate').value,
+            region: regionField.value,
+            site: siteField.value,
+            repName: repNameField.value,
+            visits: visits
+        };
+        localStorage.setItem('wataniReport', JSON.stringify(data));
+    }
+
+    function loadFromLocalStorage() {
+        const saved = localStorage.getItem('wataniReport');
+        if (saved) {
+            const data = JSON.parse(saved);
+            document.getElementById('visitDate').value = data.date || '';
+            visits = (data.visits || []).map(normalizeVisit);
+        }
+        if (!document.getElementById('visitDate').value) {
+            document.getElementById('visitDate').value = new Date().toISOString().split('T')[0];
+        }
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function normalizeToArray(value) {
+        if (Array.isArray(value)) return value;
+        if (typeof value === 'string' && value.trim()) return [value.trim()];
+        return [];
+    }
+
+    function normalizeVisit(visit) {
+        return {
+            ...visit,
+            visitTypes: normalizeToArray(visit.visitTypes || visit.visitType),
+            products: normalizeToArray(visit.products)
+        };
+    }
+
+    function formatListForCsv(items) {
+        return normalizeToArray(items).join(' + ');
+    }
+
+    function renderTagsHtml(items, tagClass) {
+        const list = normalizeToArray(items);
+        if (!list.length) return '<span class="text-muted">-</span>';
+        return `<div class="tags-cell">${list.map(item =>
+            `<span class="tag ${tagClass}">${escapeHtml(item)}</span>`
+        ).join('')}</div>`;
+    }
+
+    // ========== Multi Select ==========
+    function initMultiSelect(containerId, options, placeholder, tagClass) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = `
+            <div class="multi-select-field" tabindex="0" role="combobox" aria-expanded="false">
+                <div class="multi-select-tags"></div>
+                <span class="multi-select-placeholder">${placeholder}</span>
+                <span class="multi-select-arrow">▼</span>
+            </div>
+            <div class="multi-select-dropdown" role="listbox">
+                ${options.map(opt => `
+                    <label class="multi-select-option" data-value="${escapeHtml(opt)}">
+                        <input type="checkbox" value="${escapeHtml(opt)}">
+                        <span>${escapeHtml(opt)}</span>
+                    </label>
+                `).join('')}
+            </div>
+        `;
+
+        const field = container.querySelector('.multi-select-field');
+        const tagsEl = container.querySelector('.multi-select-tags');
+        const dropdown = container.querySelector('.multi-select-dropdown');
+        const selected = new Set();
+
+        function renderTags() {
+            tagsEl.innerHTML = Array.from(selected).map(value => `
+                <span class="tag ${tagClass}">
+                    ${escapeHtml(value)}
+                    <button type="button" class="tag-remove" data-value="${escapeHtml(value)}" aria-label="إزالة">×</button>
+                </span>
+            `).join('');
+            container.classList.toggle('has-value', selected.size > 0);
+            dropdown.querySelectorAll('.multi-select-option').forEach(opt => {
+                const val = opt.dataset.value;
+                const checkbox = opt.querySelector('input');
+                const isSelected = selected.has(val);
+                checkbox.checked = isSelected;
+                opt.classList.toggle('selected', isSelected);
+            });
+        }
+
+        function toggleDropdown(open) {
+            const isOpen = open !== undefined ? open : !container.classList.contains('open');
+            container.classList.toggle('open', isOpen);
+            field.setAttribute('aria-expanded', isOpen);
+            if (isOpen) {
+                document.querySelectorAll('.multi-select.open').forEach(el => {
+                    if (el !== container) {
+                        el.classList.remove('open');
+                        el.querySelector('.multi-select-field').setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        }
+
+        field.addEventListener('click', (e) => {
+            if (e.target.closest('.tag-remove')) return;
+            toggleDropdown();
+        });
+
+        field.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleDropdown();
+            }
+            if (e.key === 'Escape') toggleDropdown(false);
+        });
+
+        dropdown.addEventListener('change', (e) => {
+            if (e.target.type !== 'checkbox') return;
+            const option = e.target.closest('.multi-select-option');
+            const value = option.dataset.value;
+            if (e.target.checked) selected.add(value);
+            else selected.delete(value);
+            renderTags();
+            container.classList.remove('input-error');
+            if (containerId === 'visitTypeMulti') {
+                document.getElementById('visitTypeError').classList.remove('show');
+            }
+        });
+
+        tagsEl.addEventListener('click', (e) => {
+            const btn = e.target.closest('.tag-remove');
+            if (!btn) return;
+            e.stopPropagation();
+            selected.delete(btn.dataset.value);
+            renderTags();
+        });
+
+        multiSelectInstances[containerId] = {
+            getValues: () => Array.from(selected),
+            setValues: (values) => {
+                selected.clear();
+                normalizeToArray(values).forEach(v => {
+                    if (options.includes(v)) selected.add(v);
+                });
+                renderTags();
+            },
+            clear: () => {
+                selected.clear();
+                renderTags();
+                toggleDropdown(false);
+            }
+        };
+
+        renderTags();
+    }
+
+    function getMultiSelectValues(containerId) {
+        return multiSelectInstances[containerId] ? multiSelectInstances[containerId].getValues() : [];
+    }
+
+    function setMultiSelectValues(containerId, values) {
+        if (multiSelectInstances[containerId]) multiSelectInstances[containerId].setValues(values);
+    }
+
+    function clearMultiSelects() {
+        setMultiSelectValues('visitTypeMulti', []);
+        setMultiSelectValues('productsMulti', []);
+        document.getElementById('visitTypeMulti').classList.remove('input-error');
+    }
+
+    function validateMultiSelect(containerId, errorId) {
+        const values = getMultiSelectValues(containerId);
+        const container = document.getElementById(containerId);
+        const error = document.getElementById(errorId);
+        if (!values.length) {
+            container.classList.add('input-error');
+            error.classList.add('show');
+            return false;
+        }
+        container.classList.remove('input-error');
+        error.classList.remove('show');
+        return true;
+    }
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.multi-select')) {
+            document.querySelectorAll('.multi-select.open').forEach(el => {
+                el.classList.remove('open');
+                const field = el.querySelector('.multi-select-field');
+                if (field) field.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
+    // ========== عرض الزيارات (متجاوب) ==========
+    function updateVisitsDisplay() {
+        const count = visits.length;
+        const visitsCountSpan = document.getElementById('visitsCount');
+        const emptyStateDiv = document.getElementById('emptyState');
+        const visitsTable = document.getElementById('visitsTable');
+        const visitCardsDiv = document.getElementById('visitCards');
+        
+        visitsCountSpan.textContent = count;
+        
+        if (count === 0) {
+            emptyStateDiv.style.display = 'block';
+            visitsTable.style.display = 'none';
+            visitCardsDiv.style.display = 'none';
+            return;
+        }
+        
+        emptyStateDiv.style.display = 'none';
+        const isMobile = window.innerWidth < 768;
+        visitsTable.style.display = isMobile ? 'none' : 'table';
+        visitCardsDiv.style.display = isMobile ? 'flex' : 'none';
+        
+        // عرض الجدول للشاشات الكبيرة
+        document.getElementById('visitsTableBody').innerHTML = visits.map((visit, index) => {
+            const v = normalizeVisit(visit);
+            return `
+            <tr>
+                <td>
+                    <div style="font-weight: 700;">${escapeHtml(v.entityName)}</div>
+                    <span class="badge ${v.customerStatus === 'عميل جديد' ? 'badge-new' : 'badge-registered'}">
+                        ${v.customerStatus}
+                    </span>
+                </td>
+                <td>${renderTagsHtml(v.visitTypes, 'tag-visit')}</td>
+                <td>${renderTagsHtml(v.products, 'tag-product')}</td>
+                <td>${v.startTime}</td>
+                <td>${v.endTime}</td>
+                <td>${escapeHtml(v.notes) || '-'}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn btn-edit btn-small" onclick="editVisit(${index})">✏️ تعديل</button>
+                        <button class="btn btn-danger btn-small" onclick="showDeleteModal(${index})">🗑️ حذف</button>
+                    </div>
+                </td>
+            </tr>
+        `}).join('');
+        
+        // عرض البطاقات للموبايل
+        visitCardsDiv.innerHTML = visits.map((visit, index) => {
+            const v = normalizeVisit(visit);
+            return `
+            <div class="visit-card">
+                <div class="visit-card-header">
+                    <div>
+                        <div style="font-weight: 700; font-size: 1rem;">${escapeHtml(v.entityName)}</div>
+                        <span class="badge ${v.customerStatus === 'عميل جديد' ? 'badge-new' : 'badge-registered'}" style="margin-top: 5px; display: inline-block;">
+                            ${v.customerStatus}
+                        </span>
+                    </div>
+                </div>
+                <div class="visit-card-body">
+                    <div class="visit-card-row">
+                        <span class="visit-card-label">نوع الزيارة:</span>
+                        ${renderTagsHtml(v.visitTypes, 'tag-visit')}
+                    </div>
+                    <div class="visit-card-row">
+                        <span class="visit-card-label">المنتجات:</span>
+                        ${renderTagsHtml(v.products, 'tag-product')}
+                    </div>
+                    <div class="visit-card-row">
+                        <span class="visit-card-label">الوقت:</span>
+                        <span>${v.startTime} - ${v.endTime}</span>
+                    </div>
+                    ${v.notes ? `
+                    <div class="visit-card-row">
+                        <span class="visit-card-label">ملاحظات:</span>
+                        <span>${escapeHtml(v.notes)}</span>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="visit-card-actions">
+                    <button class="btn btn-edit btn-small" onclick="editVisit(${index})">✏️ تعديل</button>
+                    <button class="btn btn-danger btn-small" onclick="showDeleteModal(${index})">🗑️ حذف</button>
+                </div>
+            </div>
+        `}).join('');
+    }
+
+    // ========== التحقق من صحة النموذج ==========
+    function validateField(fieldId, errorId) {
+        const field = document.getElementById(fieldId);
+        const error = document.getElementById(errorId);
+        if (!field.value.trim()) {
+            field.classList.add('input-error');
+            error.classList.add('show');
+            return false;
+        }
+        field.classList.remove('input-error');
+        error.classList.remove('show');
+        return true;
+    }
+    
+    function validateRadio(errorId) {
+        const radios = document.getElementsByName('customerStatus');
+        const error = document.getElementById(errorId);
+        const checked = Array.from(radios).some(r => r.checked);
+        if (!checked) {
+            error.classList.add('show');
+            return false;
+        }
+        error.classList.remove('show');
+        return true;
+    }
+    
+    function validateTimeRange() {
+        const start = document.getElementById('startTime').value;
+        const end = document.getElementById('endTime').value;
+        const startError = document.getElementById('startTimeError');
+        const endError = document.getElementById('endTimeError');
+        
+        if (!start) {
+            startError.classList.add('show');
+            document.getElementById('startTime').classList.add('input-error');
+            return false;
+        }
+        if (!end) {
+            endError.textContent = '⚠️ وقت الانتهاء مطلوب';
+            endError.classList.add('show');
+            document.getElementById('endTime').classList.add('input-error');
+            return false;
+        }
+        if (start >= end) {
+            endError.textContent = '⚠️ وقت الانتهاء يجب أن يكون بعد وقت البدء';
+            endError.classList.add('show');
+            document.getElementById('endTime').classList.add('input-error');
+            return false;
+        }
+        
+        document.getElementById('startTime').classList.remove('input-error');
+        document.getElementById('endTime').classList.remove('input-error');
+        startError.classList.remove('show');
+        endError.classList.remove('show');
+        return true;
+    }
+    
+    function resetForm() {
+        document.getElementById('visitForm').reset();
+        document.querySelectorAll('input[name="customerStatus"]').forEach(r => r.checked = false);
+        clearMultiSelects();
+        document.getElementById('visitTypeError').classList.remove('show');
+        editingIndex = -1;
+        document.getElementById('addVisitBtn').innerHTML = '+ إضافة الزيارة';
+    }
+    
+    function showToast(message, type = 'success') {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = `toast ${type}`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // ========== إضافة / تعديل زيارة ==========
+    visitForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        if (!validateRadio('customerStatusError') ||
+            !validateField('entityName', 'entityNameError') ||
+            !validateTimeRange() ||
+            !validateMultiSelect('visitTypeMulti', 'visitTypeError')) {
+            showToast('يرجى تعبئة جميع الحقول المطلوبة', 'error');
+            return;
+        }
+        
+        const visit = {
+            customerStatus: document.querySelector('input[name="customerStatus"]:checked').value,
+            entityName: document.getElementById('entityName').value.trim(),
+            startTime: document.getElementById('startTime').value,
+            endTime: document.getElementById('endTime').value,
+            visitTypes: getMultiSelectValues('visitTypeMulti'),
+            products: getMultiSelectValues('productsMulti'),
+            notes: document.getElementById('notes').value.trim()
+        };
+        
+        if (editingIndex >= 0) {
+            visits[editingIndex] = visit;
+            showToast('✅ تم تحديث الزيارة بنجاح', 'success');
+        } else {
+            visits.push(visit);
+            showToast('✅ تم إضافة الزيارة بنجاح', 'success');
+        }
+        
+        resetForm();
+        saveToLocalStorage();
+        updateVisitsDisplay();
+    });
+    
+    // ========== تعديل ==========
+    window.editVisit = function(index) {
+        const v = normalizeVisit(visits[index]);
+        editingIndex = index;
+        
+        document.querySelector(`input[name="customerStatus"][value="${v.customerStatus}"]`).checked = true;
+        document.getElementById('entityName').value = v.entityName;
+        document.getElementById('startTime').value = v.startTime;
+        document.getElementById('endTime').value = v.endTime;
+        setMultiSelectValues('visitTypeMulti', v.visitTypes);
+        setMultiSelectValues('productsMulti', v.products);
+        document.getElementById('notes').value = v.notes || '';
+        
+        document.getElementById('addVisitBtn').innerHTML = '✏️ تحديث الزيارة';
+        document.querySelector('.card:has(#visitForm)').scrollIntoView({ behavior: 'smooth' });
+    };
+    
+    // ========== حذف ==========
+    window.showDeleteModal = function(index) {
+        deleteIndex = index;
+        deleteModal.classList.add('show');
+    };
+    
+    document.getElementById('cancelDeleteBtn').addEventListener('click', () => {
+        deleteModal.classList.remove('show');
+        deleteIndex = -1;
+    });
+    
+    document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+        if (deleteIndex >= 0) {
+            visits.splice(deleteIndex, 1);
+            saveToLocalStorage();
+            updateVisitsDisplay();
+            showToast('🗑️ تم حذف الزيارة بنجاح', 'success');
+            deleteModal.classList.remove('show');
+            deleteIndex = -1;
+        }
+    });
+    
+    // ========== إرسال التقرير ==========
+    submitReportBtn.addEventListener('click', () => {
+        const date = document.getElementById('visitDate').value;
+        const region = regionField.value;
+        const site = siteField.value;
+        const repName = repNameField.value.trim();
+        
+        let isValid = true;
+        
+        if (!date) { document.getElementById('visitDateError').classList.add('show'); isValid = false; }
+        else { document.getElementById('visitDateError').classList.remove('show'); }
+        
+        if (!region) { document.getElementById('regionError').classList.add('show'); isValid = false; }
+        else { document.getElementById('regionError').classList.remove('show'); }
+        
+        if (!site) { document.getElementById('siteError').classList.add('show'); isValid = false; }
+        else { document.getElementById('siteError').classList.remove('show'); }
+        
+        if (!repName) { document.getElementById('repNameError').classList.add('show'); isValid = false; }
+        else { document.getElementById('repNameError').classList.remove('show'); }
+        
+        if (!isValid) {
+            showToast('⚠️ يرجى تعبئة جميع المعلومات الأساسية', 'error');
+            return;
+        }
+        
+        if (visits.length === 0) {
+            showToast('⚠️ يجب إضافة زيارة واحدة على الأقل', 'error');
+            return;
+        }
+        
+        // إنشاء CSV
+        const headers = ['التاريخ', 'المنطقة', 'الموقع', 'اسم المندوب', 'حالة العميل', 'اسم الجهة', 'وقت البدء', 'وقت الانتهاء', 'نوع الزيارة', 'المنتجات محل الاهتمام', 'الملاحظات'];
+        const rows = visits.map(v => {
+            const normalized = normalizeVisit(v);
+            return [
+                date, region, site, repName, v.customerStatus, v.entityName,
+                v.startTime, v.endTime,
+                formatListForCsv(normalized.visitTypes),
+                formatListForCsv(normalized.products),
+                v.notes || ''
+            ];
+        });
+        
+        let csv = '\uFEFF' + headers.join(',') + '\n';
+        rows.forEach(row => {
+            csv += row.map(cell => `"${cell.replace(/"/g, '""')}"`).join(',') + '\n';
+        });
+        
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `التقرير اليومي الخاص بيوم ${date}.csv`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+        
+        showToast('📊 تم إرسال التقرير بنجاح', 'success');
+    });
+    
+    // ========== Auto-save ==========
+    document.getElementById('visitDate').addEventListener('change', saveToLocalStorage);
+    
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+        el.addEventListener('input', function() {
+            this.classList.remove('input-error');
+            const errorId = this.id + 'Error';
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) errorEl.classList.remove('show');
+        });
+    });
+    
+    // تشغيل
+    initMultiSelect('visitTypeMulti', visitTypeOptions, 'اختر نوع الزيارة...', 'tag-visit');
+    initMultiSelect('productsMulti', productOptions, 'اختر المنتجات...', 'tag-product');
+
+    console.log('app started');
+    if (requireAuth()) {
+        loadFromLocalStorage();
+        updateVisitsDisplay();
+    }
+</script>
+</body>
+</html>
